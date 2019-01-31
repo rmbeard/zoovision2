@@ -30,10 +30,9 @@ app.secret_key = 'secret key'
 # Set up database
 engine = create_engine('postgresql://postgres:Circe2635!@localhost/zoovision', convert_unicode=True)
 db = scoped_session(sessionmaker(autocommit=False,
-                                 autoflush=False,
-                                 bind=engine))
+                                         autoflush=False,
+                                         bind=engine))
 db = SQLAlchemy(app)
-
 
 # init_db()
 
@@ -79,8 +78,7 @@ def surveillance():
             print(selected_week)
             result = maps1(file, selected_risk, selected_season, selected_week)
 
-            return render_template("surveillance.html", week=week, min=1, max=52, selected_week=selected_week,
-                                   seasons=seasons,
+            return render_template("surveillance.html", week=week, min=1, max=52, selected_week=selected_week, seasons=seasons,
                                    selected_risk=selected_risk, selected_season=selected_season,
                                    viruses=viruses, risk_factors=risk_factors, result=result)
         elif 'hello' in request.form:
@@ -92,10 +90,8 @@ def surveillance():
             session['selected_week'] = selected_week
             print(selected_week)
             result = maps1(file, selected_risk, selected_season, selected_week)
-            return render_template("surveillance.html", selected_week=selected_week, week=week, min=1, max=52,
-                                   seasons=seasons,
-                                   selected_risk=selected_risk, selected_season=selected_season, viruses=viruses,
-                                   risk_factors=risk_factors,
+            return render_template("surveillance.html", selected_week=selected_week, week=week, min=1, max=52, seasons=seasons,
+                                   selected_risk=selected_risk, selected_season=selected_season, viruses=viruses, risk_factors=risk_factors,
                                    result=result)
     result = maps1(file, selected_risk, selected_season, selected_week)
     return render_template("surveillance.html", week=week, min=1, max=52, seasons=seasons, selected_week=selected_week,
@@ -173,7 +169,7 @@ def slider():
     df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv')
 
     data = [dict(type='choropleth',
-                 locations=df['code'].astype(str),
+                 locations = df['code'].astype(str),
                  z=df['total exports'].astype(float),
                  locationmode='USA-states')]
 
