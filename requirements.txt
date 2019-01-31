@@ -19,7 +19,6 @@ Flask-WTF
 numpy
 setuptools
 wheel
-gdal
 geopandas
 google
 gunicorn
