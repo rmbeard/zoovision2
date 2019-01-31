@@ -17,6 +17,8 @@ Flask-Migrate
 Flask-SQLAlchemy
 Flask-WTF
 numpy
+setuptools
+wheel
 gdal
 geopandas
 google
