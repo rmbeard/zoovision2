@@ -103,7 +103,7 @@ def surveillance():
 @app.route("/prediction_analysis", methods=['GET', 'POST'])
 def prediction_analysis():
     # set defualt parameters
-    file = "C:\zoovision\data\Region1.shp"
+    file = "..zoovision\data\region1\Region1.shp"
     weights = ['Genetic transition rate', 'Inverse Distance']
     selected_weight = "Inverse Distance"
     selected_risk = "POP2010"
