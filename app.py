@@ -51,8 +51,8 @@ def home():
 @app.route("/surveillance", methods=['GET', 'POST'])
 def surveillance():
     # set filepeth to shapefile to use in geopandas
-    file = os.path.relpath('zoovision\data\state', 'states2.shp')
-    # file = "..zoovision\data\state\states2.shp"
+    # file = os.path.relpath('zoovision\data\state', 'states2.shp')
+    file = "\zoovision\data\state\states2.shp"
     # set defualt parametersx
     seasons = ['2015-16', '2016-17', '2017-18', '2018-19']
     viruses = ['H5N2', 'H5N8']
