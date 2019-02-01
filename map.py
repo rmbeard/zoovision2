@@ -10,7 +10,7 @@ import os, time, glob
 
 
 def maps1(files, selected_risk, selected_season, selected_week):
-    df = pd.read_csv('zoovision/data/weeklydata.csv')
+    df = pd.read_csv('./data/weeklydata.csv')
     fp = files
     rg1 = gpd.read_file(fp)
     print(df.dtypes)
