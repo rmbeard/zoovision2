@@ -63,7 +63,7 @@ def maps1(files, selected_risk, selected_season, selected_week):
 def mapper(files):
     fp = files
     rg1 = gpd.read_file(fp)
-    rg1 = rg1.to_crs(epsg=2163)
+    # rg1 = rg1.to_crs(epsg=2163)
     fig, ax = plt.subplots(1, figsize=(15, 10))
     selected = "POP10_SQMI"
     if selected == "POP10_SQMI":
@@ -104,7 +104,7 @@ def mapper_test(files, db_result, selected_virus, selected_risk, risk_factor):
     # print(rg1)
     # print(tuple(df))
     # print(tuple(rg1))
-    rg1 = rg1.to_crs(epsg=2163)
+    # rg1 = rg1.to_crs(epsg=2163)
     # df.STATE_NAME.astype(str)
     # rg1.STATE_NAME.astype(str)
     # print(df.dtypes)
