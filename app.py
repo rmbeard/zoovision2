@@ -52,7 +52,7 @@ def home():
 def surveillance():
     # set filepeth to shapefile to use in geopandas
     # file = os.path.relpath('zoovision\data\state', 'states2.shp')
-    file = "\zoovision\data\state\states2.shp"
+    file = "./data/state/states2.shp"
     # set defualt parametersx
     seasons = ['2015-16', '2016-17', '2017-18', '2018-19']
     viruses = ['H5N2', 'H5N8']
@@ -104,7 +104,7 @@ def surveillance():
 @app.route("/prediction_analysis", methods=['GET', 'POST'])
 def prediction_analysis():
     # set defualt parameters
-    file = "..zoovision\data\region1\Region1.shp"
+    file = "./data/region1/Region1.shp"
     weights = ['Genetic transition rate', 'Inverse Distance']
     selected_weight = "Inverse Distance"
     selected_risk = "POP2010"
