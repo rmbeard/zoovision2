@@ -135,7 +135,7 @@ def mapper_test(files, db_result, selected_virus, selected_risk, risk_factor):
 def local_moran(files, weight):
     fp = files
     rg1 = gpd.read_file(fp)
-    rg1 = rg1.to_crs(epsg=2163)
+    # rg1 = rg1.to_crs(epsg=2163)
     # fig, ax = plt.subplots(1, figsize=(12, 12))
     # ax.set_title("Local Indicators of Spatial Association ", y=1.08, fontsize=42)
     # ax.set_axis_off()
