@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zoovision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+{% extends "template.html" %}
+{% block content %}
+<div class="w3-container">
+    <h1>Zoovision</h1>
+    <div id="pages" class="w3-bar w3-black">
+        <a href="{{ url_for('home') }}" class="w3-bar-item w3-button tablink ">Home</a>
+        <a href="{{ url_for('surveillance') }}" class="w3-bar-item w3-button tablink ">Surveillance</a>
+        <a href="{{ url_for('prediction_analysis') }}" class="w3-bar-item w3-button tablink">Analysis</a>
+        <a href="{{ url_for('survey') }}" class="w3-bar-item w3-button tablink w3-green">Survey</a>
+    </div>
+</div>
+<div class="column">
+    <h2>Background Survey</h2>
+
+<form name="Item_1" method='POST' action="/surveillance">
+    <p>1. What is your age ?</p>
+     <select name= "species" >
+      <option value="{{speciess[0]}}" selected>{{speciess[0]}}</option>
+        {% for species in speciess[1:] %}
+         <option value="{{species}}"{% if species == selected_species %} selected{% endif %}>{{species}}</option>
+        {% endfor %}
+      </select>
+    <p>2. Highest level of completed education</p>
+      <select name= "virus">
+      <option value="{{viruses[0]}}" selected>{{viruses[0]}}</option>
+        {% for virus in viruses[1:] %}
+         <option value="{{virus}}"{% if virus == selected_virus %} selected{% endif %}>{{virus}}</option>
+        {% endfor %}
+      </select>
+    <p>3. Please indicate your experience with decision support systems</p>
+      <select name= "risk_factor" method="POST" action="/surveillance">
+      <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
+        {% for risk_factor in risk_factors[1:] %}
+         <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
+        {% endfor %}
+      </select>
+
+    <h2>Computer System Usability Questionnaire</h2>
+
+    <p>
+<table id=ratings cellspacing=1 cellpadding=2 border=0>
+<tr bgcolor="#dddddd" valign=middle><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><th scope="col">1</th>
+<th scope="col">2</th>
+<th scope="col">3</th>
+<th scope="col">4</th>
+<th scope="col">5</th>
+<th scope="col">6</th>
+<th scope="col">7</th>
+<td>&nbsp;</td><th>NA</th>
+</tr><tr valign=top><td align=right><a name=q1>1.</a></td>
+<td><label for=q1>Overall, I am satisfied with how easy it is to use this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q1_1' name='q1' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q1_2' name='q1' title='2' value='2' ></td>
+<td><input type='radio' id='q1_3' name='q1' title='3' value='3' ></td>
+<td><input type='radio' id='q1_4' name='q1' title='4' value='4' ></td>
+<td><input type='radio' id='q1_5' name='q1' title='5' value='5' ></td>
+<td><input type='radio' id='q1_6' name='q1' title='6' value='6' ></td>
+<td><input type='radio' id='q1_7' name='q1' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q1 name=q1 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q2>2.</a></td>
+<td><label for=q2>It was simple to use this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q2_1' name='q2' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q2_2' name='q2' title='2' value='2' ></td>
+<td><input type='radio' id='q2_3' name='q2' title='3' value='3' ></td>
+<td><input type='radio' id='q2_4' name='q2' title='4' value='4' ></td>
+<td><input type='radio' id='q2_5' name='q2' title='5' value='5' ></td>
+<td><input type='radio' id='q2_6' name='q2' title='6' value='6' ></td>
+<td><input type='radio' id='q2_7' name='q2' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q2 name=q2 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q3>3.</a></td>
+<td><label for=q3>I can effectively complete my work using this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q3_1' name='q3' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q3_2' name='q3' title='2' value='2' ></td>
+<td><input type='radio' id='q3_3' name='q3' title='3' value='3' ></td>
+<td><input type='radio' id='q3_4' name='q3' title='4' value='4' ></td>
+<td><input type='radio' id='q3_5' name='q3' title='5' value='5' ></td>
+<td><input type='radio' id='q3_6' name='q3' title='6' value='6' ></td>
+<td><input type='radio' id='q3_7' name='q3' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q3 name=q3 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q4>4.</a></td>
+<td><label for=q4>I am able to complete my work quickly using this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q4_1' name='q4' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q4_2' name='q4' title='2' value='2' ></td>
+<td><input type='radio' id='q4_3' name='q4' title='3' value='3' ></td>
+<td><input type='radio' id='q4_4' name='q4' title='4' value='4' ></td>
+<td><input type='radio' id='q4_5' name='q4' title='5' value='5' ></td>
+<td><input type='radio' id='q4_6' name='q4' title='6' value='6' ></td>
+<td><input type='radio' id='q4_7' name='q4' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q4 name=q4 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q5>5.</a></td>
+<td><label for=q5>I am able to efficiently complete my work using this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q5_1' name='q5' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q5_2' name='q5' title='2' value='2' ></td>
+<td><input type='radio' id='q5_3' name='q5' title='3' value='3' ></td>
+<td><input type='radio' id='q5_4' name='q5' title='4' value='4' ></td>
+<td><input type='radio' id='q5_5' name='q5' title='5' value='5' ></td>
+<td><input type='radio' id='q5_6' name='q5' title='6' value='6' ></td>
+<td><input type='radio' id='q5_7' name='q5' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q5 name=q5 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q6>6.</a></td>
+<td><label for=q6>I feel comfortable using this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q6_1' name='q6' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q6_2' name='q6' title='2' value='2' ></td>
+<td><input type='radio' id='q6_3' name='q6' title='3' value='3' ></td>
+<td><input type='radio' id='q6_4' name='q6' title='4' value='4' ></td>
+<td><input type='radio' id='q6_5' name='q6' title='5' value='5' ></td>
+<td><input type='radio' id='q6_6' name='q6' title='6' value='6' ></td>
+<td><input type='radio' id='q6_7' name='q6' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q6 name=q6 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q7>7.</a></td>
+<td><label for=q7>It was easy to learn to use this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q7_1' name='q7' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q7_2' name='q7' title='2' value='2' ></td>
+<td><input type='radio' id='q7_3' name='q7' title='3' value='3' ></td>
+<td><input type='radio' id='q7_4' name='q7' title='4' value='4' ></td>
+<td><input type='radio' id='q7_5' name='q7' title='5' value='5' ></td>
+<td><input type='radio' id='q7_6' name='q7' title='6' value='6' ></td>
+<td><input type='radio' id='q7_7' name='q7' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q7 name=q7 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q8>8.</a></td>
+<td><label for=q8>I believe I became productive quickly using this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q8_1' name='q8' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q8_2' name='q8' title='2' value='2' ></td>
+<td><input type='radio' id='q8_3' name='q8' title='3' value='3' ></td>
+<td><input type='radio' id='q8_4' name='q8' title='4' value='4' ></td>
+<td><input type='radio' id='q8_5' name='q8' title='5' value='5' ></td>
+<td><input type='radio' id='q8_6' name='q8' title='6' value='6' ></td>
+<td><input type='radio' id='q8_7' name='q8' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q8 name=q8 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q9>9.</a></td>
+<td><label for=q9>The system gives error messages that clearly tell me how to fix problems</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q9_1' name='q9' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q9_2' name='q9' title='2' value='2' ></td>
+<td><input type='radio' id='q9_3' name='q9' title='3' value='3' ></td>
+<td><input type='radio' id='q9_4' name='q9' title='4' value='4' ></td>
+<td><input type='radio' id='q9_5' name='q9' title='5' value='5' ></td>
+<td><input type='radio' id='q9_6' name='q9' title='6' value='6' ></td>
+<td><input type='radio' id='q9_7' name='q9' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q9 name=q9 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q10>10.</a></td>
+<td><label for=q10>Whenever I make a mistake using the system, I recover easily and quickly</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q10_1' name='q10' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q10_2' name='q10' title='2' value='2' ></td>
+<td><input type='radio' id='q10_3' name='q10' title='3' value='3' ></td>
+<td><input type='radio' id='q10_4' name='q10' title='4' value='4' ></td>
+<td><input type='radio' id='q10_5' name='q10' title='5' value='5' ></td>
+<td><input type='radio' id='q10_6' name='q10' title='6' value='6' ></td>
+<td><input type='radio' id='q10_7' name='q10' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q10 name=q10 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q11>11.</a></td>
+<td><label for=q11>The information (such as online help, on-screen messages, and other documentation) provided with this system is clear</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q11_1' name='q11' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q11_2' name='q11' title='2' value='2' ></td>
+<td><input type='radio' id='q11_3' name='q11' title='3' value='3' ></td>
+<td><input type='radio' id='q11_4' name='q11' title='4' value='4' ></td>
+<td><input type='radio' id='q11_5' name='q11' title='5' value='5' ></td>
+<td><input type='radio' id='q11_6' name='q11' title='6' value='6' ></td>
+<td><input type='radio' id='q11_7' name='q11' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q11 name=q11 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q12>12.</a></td>
+<td><label for=q12>It is easy to find the information I needed</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q12_1' name='q12' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q12_2' name='q12' title='2' value='2' ></td>
+<td><input type='radio' id='q12_3' name='q12' title='3' value='3' ></td>
+<td><input type='radio' id='q12_4' name='q12' title='4' value='4' ></td>
+<td><input type='radio' id='q12_5' name='q12' title='5' value='5' ></td>
+<td><input type='radio' id='q12_6' name='q12' title='6' value='6' ></td>
+<td><input type='radio' id='q12_7' name='q12' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q12 name=q12 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q13>13.</a></td>
+<td><label for=q13>The information provided for the system is easy to understand</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q13_1' name='q13' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q13_2' name='q13' title='2' value='2' ></td>
+<td><input type='radio' id='q13_3' name='q13' title='3' value='3' ></td>
+<td><input type='radio' id='q13_4' name='q13' title='4' value='4' ></td>
+<td><input type='radio' id='q13_5' name='q13' title='5' value='5' ></td>
+<td><input type='radio' id='q13_6' name='q13' title='6' value='6' ></td>
+<td><input type='radio' id='q13_7' name='q13' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q13 name=q13 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q14>14.</a></td>
+<td><label for=q14>The information is effective in helping me complete the tasks and scenarios</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q14_1' name='q14' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q14_2' name='q14' title='2' value='2' ></td>
+<td><input type='radio' id='q14_3' name='q14' title='3' value='3' ></td>
+<td><input type='radio' id='q14_4' name='q14' title='4' value='4' ></td>
+<td><input type='radio' id='q14_5' name='q14' title='5' value='5' ></td>
+<td><input type='radio' id='q14_6' name='q14' title='6' value='6' ></td>
+<td><input type='radio' id='q14_7' name='q14' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q14 name=q14 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q15>15.</a></td>
+<td><label for=q15>The organization of information on the system screens is clear</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q15_1' name='q15' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q15_2' name='q15' title='2' value='2' ></td>
+<td><input type='radio' id='q15_3' name='q15' title='3' value='3' ></td>
+<td><input type='radio' id='q15_4' name='q15' title='4' value='4' ></td>
+<td><input type='radio' id='q15_5' name='q15' title='5' value='5' ></td>
+<td><input type='radio' id='q15_6' name='q15' title='6' value='6' ></td>
+<td><input type='radio' id='q15_7' name='q15' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q15 name=q15 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q16>16.</a></td>
+<td><label for=q16>The interface of this system is pleasant</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q16_1' name='q16' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q16_2' name='q16' title='2' value='2' ></td>
+<td><input type='radio' id='q16_3' name='q16' title='3' value='3' ></td>
+<td><input type='radio' id='q16_4' name='q16' title='4' value='4' ></td>
+<td><input type='radio' id='q16_5' name='q16' title='5' value='5' ></td>
+<td><input type='radio' id='q16_6' name='q16' title='6' value='6' ></td>
+<td><input type='radio' id='q16_7' name='q16' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q16 name=q16 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q17>17.</a></td>
+<td><label for=q17>I like using the interface of this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q17_1' name='q17' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q17_2' name='q17' title='2' value='2' ></td>
+<td><input type='radio' id='q17_3' name='q17' title='3' value='3' ></td>
+<td><input type='radio' id='q17_4' name='q17' title='4' value='4' ></td>
+<td><input type='radio' id='q17_5' name='q17' title='5' value='5' ></td>
+<td><input type='radio' id='q17_6' name='q17' title='6' value='6' ></td>
+<td><input type='radio' id='q17_7' name='q17' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q17 name=q17 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q18>18.</a></td>
+<td><label for=q18>This system has all the functions and capabilities I expect it to have</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q18_1' name='q18' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q18_2' name='q18' title='2' value='2' ></td>
+<td><input type='radio' id='q18_3' name='q18' title='3' value='3' ></td>
+<td><input type='radio' id='q18_4' name='q18' title='4' value='4' ></td>
+<td><input type='radio' id='q18_5' name='q18' title='5' value='5' ></td>
+<td><input type='radio' id='q18_6' name='q18' title='6' value='6' ></td>
+<td><input type='radio' id='q18_7' name='q18' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q18 name=q18 value="0" ></td>
+</tr><tr valign=top><td align=right><a name=q19>19.</a></td>
+<td><label for=q19>Overall, I am satisfied with this system</label>
+</td>
+<td align=right><font size="-1">strongly disagree</font></td>
+<td><input type='radio' id='q19_1' name='q19' title='1 (strongly disagree)' value='1' ></td>
+<td><input type='radio' id='q19_2' name='q19' title='2' value='2' ></td>
+<td><input type='radio' id='q19_3' name='q19' title='3' value='3' ></td>
+<td><input type='radio' id='q19_4' name='q19' title='4' value='4' ></td>
+<td><input type='radio' id='q19_5' name='q19' title='5' value='5' ></td>
+<td><input type='radio' id='q19_6' name='q19' title='6' value='6' ></td>
+<td><input type='radio' id='q19_7' name='q19' title='7 (strongly agree)' value='7' ></td>
+<td align=left><font size="-1">strongly agree</font></td>
+<td><input type=radio title="For items that are not applicable, use: NA" id=q19 name=q19 value="0" ></td>
+</tr><tr bgcolor="#dddddd" valign=middle><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><th scope="col">1</th>
+<th scope="col">2</th>
+<th scope="col">3</th>
+<th scope="col">4</th>
+<th scope="col">5</th>
+<th scope="col">6</th>
+<th scope="col">7</th>
+<td>&nbsp;</td><th>NA</th>
+</tr></table>
+<p>List <b>negative</b> aspect(s):
+<ol>
+	<li><input id='negative1' name='negative1' value="" size='60'>
+	<li><input id='negative2' name='negative2' value="" size='60'>
+</ol>
+<p>List <b>positive</b> aspect(s):
+<ol>
+	<li><input id='positive1' name='positive1' value="" size='60'>
+	<li><input id='positive2' name='positive2' value="" size='60'>
+</ol>
+        <button  method="POST" action="/surveillance" type ="submit">Submit</button>
+    </form>
+<br>
+    <h4>Based on: Lewis, J. R. (1995) IBM Computer Usability Satisfaction Questionnaires: Psychometric Evaluation and \
+        Instructions for Use. International Journal of Human-Computer Interaction, 7:1, 57-78.</h4>
+</div>
+{% endblock %}
+</body>
+</html>

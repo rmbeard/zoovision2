@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Zoovision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+</head>
+
+<body>
+{% extends "template.html" %}
+ {% block content %}
+ <div class="w3-container">
+  <h1>Zoovision</h1>
+  <div id="pages" class="w3-bar w3-black">
+      <a href="{{ url_for('home') }}" class="w3-bar-item w3-button tablink " >Home</a>
+      <a href="{{ url_for('surveillance') }}" class="w3-bar-item w3-button tablink w3-green" >Surveillance</a>
+      <a href="{{ url_for('prediction_analysis') }}" class="w3-bar-item w3-button tablink" >Analysis</a>
+      <a href="{{ url_for('survey') }}" class="w3-bar-item w3-button tablink " >Survey</a>
+  </div>
+ </div>
+<div class="row">
+  <div class="column side">
+     <h2>National Surveillance Summary</h2>
+     <form name="Item_1" method='POST' action="/surveillance">
+    <p>Select season</p>
+     <select name= "season" >
+      <option value="{{seasons[0]}}" selected>{{seasons[0]}}</option>
+        {% for season in seasons[1:] %}
+         <option value="{{season}}"{% if season == selected_season %} selected{% endif %}>{{season}}</option>
+        {% endfor %}
+      </select>
+    <p>Select virus</p>
+      <select name= "virus">
+      <option value="{{viruses[0]}}" selected>{{viruses[0]}}</option>
+        {% for virus in viruses[1:] %}
+         <option value="{{virus}}"{% if virus == selected_virus %} selected{% endif %}>{{virus}}</option>
+        {% endfor %}
+      </select>
+    <p>Select risk factor</p>
+      <select name= "risk_factor" method="POST" action="/surveillance">
+      <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
+        {% for risk_factor in risk_factors[1:] %}
+         <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
+        {% endfor %}
+      </select>
+         <button  name=Query method="POST" action="/surveillance" type ="submit">Query</button>
+    </form>
+  </div>
+  <div class="column middle">
+      <p>
+      <div style="text-align: center;"><img src="{{ result }}" width="800"></div>
+      <form name=slider method="POST" action="/surveillance">
+        <div class="slidecontainer" id="slide_container_f">
+         <p>week:<span id="demo"></span></p>
+         <input type="range" min={{min}} max={{max}} value={{selected_week}} class="slider"
+             id="myRange" name="week" oninput="sliderChange(this.value)" />
+            <output for="week" oninput="value = week.valueAsNumber;"></output>
+         <input name=hello type="submit" value="Submit">
+        </div>
+    </form>
+<script>
+
+
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+
+    </p>
+  </div>
+  <div class="column side">
+        <h2>Summary chart here</h2>
+        <p></p>
+        <p></p>
+        <div class="container">
+    <!--<div class="row">-->
+        <!--<div class="col-xs-3">-->
+            <!--<label> Choose the plot type....</label>-->
+            <!--<select class="form-control" id ='first_cat'>-->
+                <!--<option value="Bar">Bar</option>-->
+                <!--<option value="Scatter">Scatter</option>-->
+            <!--</select>-->
+        <!--</div>-->
+        <!--<div class="col-md-6">-->
+            <!--<div class="chart" id="bargraph">-->
+                <!--<script>-->
+                    <!--var graphs = {{plot | safe}};-->
+                    <!--Plotly.plot('bargraph',graphs,{});-->
+                <!--</script>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+  </div>
+
+</div>
+
+ {% endblock %}
+</body>
+<script src="{{ url_for('static', filename='js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/plots.js') }}"></script>
+</html>

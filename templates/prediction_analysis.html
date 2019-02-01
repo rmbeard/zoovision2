@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zoovision</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+{% extends "template.html" %}
+{% block content %}
+<div class="w3-container">
+    <h1>Zoovision</h1>
+    <div id="pages" class="w3-bar w3-black">
+        <a href="{{ url_for('home') }}" class="w3-bar-item w3-button tablink ">Home</a>
+        <a href="{{ url_for('surveillance') }}" class="w3-bar-item w3-button tablink ">Surveillance</a>
+        <a href="{{ url_for('prediction_analysis') }}" class="w3-bar-item w3-button tablink w3-green">Analysis</a>
+        <a href="{{ url_for('survey') }}" class="w3-bar-item w3-button tablink">Survey</a>
+    </div>
+    <div class="row">
+  <div class="column side">
+     <h2>Cluster analysis</h2>
+     <form name="Item_1" method='POST' action="/prediction_analysis">
+    <p>Select Department Case study</p>
+     <select name= "species" >
+      <option value="{{speciess[0]}}" selected>{{speciess[0]}}</option>
+        {% for species in speciess[1:] %}
+         <option value="{{species}}"{% if species == selected_species %} selected{% endif %}>{{species}}</option>
+        {% endfor %}
+      </select>
+    <p>Select weighting</p>
+      <select name= "weight">
+      <option value="{{weights[0]}}" selected>{{weights[0]}}</option>
+        {% for weight in weights[1:] %}
+         <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{weight}}</option>
+        {% endfor %}
+      </select>
+      </select>
+         <button  method="POST" action="/prediction_analysis" type ="submit">Analyze</button>
+    </form>
+     <h2>Prediction analysis</h2>
+     <form name="Item_2" method='POST' action="/prediction_analysis">
+     <p>Select variables</p>
+     <select name= "species" >
+      <option value="{{speciess[0]}}" selected>{{speciess[0]}}</option>
+        {% for species in speciess[1:] %}
+         <option value="{{species}}"{% if species == selected_species %} selected{% endif %}>{{species}}</option>
+        {% endfor %}
+      </select>
+    <p>Select Algorithm</p>
+      <select name= "weight">
+      <option value="{{weights[0]}}" selected>{{weights[0]}}</option>
+        {% for weight in weights[1:] %}
+         <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{virus}}</option>
+        {% endfor %}
+      </select>
+    <p>Select risk factor</p>
+      <select name= "risk_factor" method="POST" action="/surveillance">
+      <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
+        {% for risk_factor in risk_factors[1:] %}
+         <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
+        {% endfor %}
+      </select>
+         <button  method="POST" action="/surveillance" type ="submit">Analyze</button>
+    </form>
+  </div>
+        <div class="column middle">
+      <p>
+         <img src="{{ result }}" width="800">
+    </p>
+  </div>
+  <div class="column side">
+    <h2>Summary</h2>
+    <p>description of cluster classifications and p values</p>
+      <p>description of predictions</p>
+  </div>
+</div>
+{% endblock %}
+</body>
+</html>
