@@ -117,7 +117,7 @@ def prediction_analysis():
         # selected_risk = request.form['risk_factor']
         if selected_species == 'Public Health':
             # set filepeth to shapefile to use in geopandas
-            file = "C:\zoovision\data\Region1.shp"
+            file = "./data/region1/Region1.shp"
             # db_result = engine.execute('SELECT * FROM human_data WHERE season_description = 2017')
             # df = GeoDataFrame(db_result.fetchall())
             # df.columns = db_result.keys()
