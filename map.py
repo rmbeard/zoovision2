@@ -65,11 +65,11 @@ def mapper(files):
     rg1 = gpd.read_file(fp)
     # rg1 = rg1.to_crs(epsg=2163)
     fig, ax = plt.subplots(1, figsize=(15, 10))
-    selected = "POP10_SQMI"
-    if selected == "POP10_SQMI":
-        hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
-    else:
-        hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
+    # selected = "POP10_SQMI"
+    # if selected == "POP10_SQMI":
+    #    hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
+    # else:
+    #    hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
     title = "Select parameters and press query to view surveillance summary"
     ax.set_title(title, y=1.08, fontsize=30)
     ax.set_axis_off()
