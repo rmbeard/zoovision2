@@ -28,7 +28,7 @@ def maps1(files, selected_risk, selected_season, selected_week):
 
     df = df[['SEASON', 'STATE_NAME', 'WEEK', 'PERCENT POSITIVE', '%UNWEIGHTED ILI']]
     print(df)
-    rg1 = rg1.to_crs(epsg=2163)
+    # rg1 = rg1.to_crs(epsg=2163)
     rg1 = rg1.merge(df, on='STATE_NAME')
     # print(rg1)
     # print(rg1.dtypes)
