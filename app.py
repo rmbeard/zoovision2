@@ -4,17 +4,13 @@
 import logging
 from flask import Flask, Flask, render_template, flash, request, jsonify
 # from flask_googlemaps import GoogleMaps
-from wtforms import SelectField, SubmitField, Form, TextField, TextAreaField, validators
-from flask_wtf import FlaskForm
+# from wtforms import SelectField, SubmitField, Form, TextField, TextAreaField, validators
+# from flask_wtf import FlaskForm
 from map import maps1, mapper, mapper_test, local_moran, slider
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
-import plotly
-import plotly.graph_objs as go
-import pandas as pd
-import numpy as np
-import json
+# from flask_sqlalchemy import SQLAlchemy
+# from sqlalchemy import create_engine
+# from sqlalchemy.orm import scoped_session, sessionmaker
+
 from flask import Flask, session
 
 # from db_setup import init_db
@@ -28,11 +24,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # silence the deprecation
 app.secret_key = 'secret key'
 
 # Set up database
-engine = create_engine('postgresql://postgres:Circe2635!@localhost/zoovision', convert_unicode=True)
-db = scoped_session(sessionmaker(autocommit=False,
-                                 autoflush=False,
-                                 bind=engine))
-db = SQLAlchemy(app)
+# engine = create_engine('postgresql://postgres:Circe2635!@localhost/zoovision', convert_unicode=True)
+# db = scoped_session(sessionmaker(autocommit=False,
+#                                 autoflush=False,
+#                                bind=engine))
+# db = SQLAlchemy(app)
 
 
 # init_db()
@@ -169,42 +165,42 @@ def server_error(e):
     """.format(e), 500
 
 
-def slider():
-    df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv')
-
-    data = [dict(type='choropleth',
-                 locations=df['code'].astype(str),
-                 z=df['total exports'].astype(float),
-                 locationmode='USA-states')]
-
-    # let's create some additional, random data
-    for i in range(5):
-        data.append(data[0].copy())
-        data[-1]['z'] = data[0]['z'] * np.random.rand(*data[0]['z'].shape)
-
-    # let's create the steps for the slider
-    steps = []
-    for i in range(len(data)):
-        step = dict(method='restyle',
-                    args=['visible', [False] * len(data)],
-                    label='Year {}'.format(i + 1980))
-        step['args'][1][i] = True
-        steps.append(step)
-
-    sliders = [dict(active=0,
-                    pad={"t": 1},
-                    steps=steps)]
-    layout = dict(geo=dict(scope='usa',
-                           projection={'type': 'albers usa'}),
-                  sliders=sliders)
-
-    fig = dict(data=data,
-               layout=layout)
-    # py.plot(fig)
-
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
-    return graphJSON
+# def slider():
+#     df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_us_ag_exports.csv')
+#
+#     data = [dict(type='choropleth',
+#                  locations=df['code'].astype(str),
+#                  z=df['total exports'].astype(float),
+#                  locationmode='USA-states')]
+#
+#     # let's create some additional, random data
+#     for i in range(5):
+#         data.append(data[0].copy())
+#         data[-1]['z'] = data[0]['z'] * np.random.rand(*data[0]['z'].shape)
+#
+#     # let's create the steps for the slider
+#     steps = []
+#     for i in range(len(data)):
+#         step = dict(method='restyle',
+#                     args=['visible', [False] * len(data)],
+#                     label='Year {}'.format(i + 1980))
+#         step['args'][1][i] = True
+#         steps.append(step)
+#
+#     sliders = [dict(active=0,
+#                     pad={"t": 1},
+#                     steps=steps)]
+#     layout = dict(geo=dict(scope='usa',
+#                            projection={'type': 'albers usa'}),
+#                   sliders=sliders)
+#
+#     fig = dict(data=data,
+#                layout=layout)
+#     # py.plot(fig)
+#
+#     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+#
+#     return graphJSON
 
 
 if __name__ == '__main__':

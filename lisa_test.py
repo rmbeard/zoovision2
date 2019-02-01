@@ -4,17 +4,13 @@
 
 # %pip install matplotlib inline
 import matplotlib.pyplot as plt
-from matplotlib import colors
-import os, tempfile, numpy
-import copy
-from scipy import sparse
+
 import pysal as ps
 from splot.esda import lisa_cluster, plot_moran, plot_local_autocorrelation, moran_scatterplot
 from esda.moran import Moran_Local
 import numpy as np
 import pandas as pd
 import geopandas as gpd
-from pysal.contrib.viz import mapping as maps
 
 
 # required variables to implement local moran:
