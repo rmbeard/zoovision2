@@ -46,7 +46,7 @@ def session_management():
 
 
 @app.route("/", methods=['GET', 'POST'])
-def home()
+def home():
     file = "./data/Export_Output.shp"
     # set defualt parametersx
     seasons = [ '2016-17', '2017-18', '2018-19']
