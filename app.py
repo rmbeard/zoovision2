@@ -46,8 +46,8 @@ def session_management():
 
 
 @app.route("/", methods=['GET', 'POST'])
-def home():
-    file = "C:\zoovision\data\Export_Output.shp"
+def home()
+    file = "./data/Export_Output.shp"
     # set defualt parametersx
     seasons = [ '2016-17', '2017-18', '2018-19']
     viruses = ['H1N1', 'H3N2']
