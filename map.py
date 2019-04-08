@@ -5,17 +5,16 @@ import pysal as ps
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import pandas as pd
+import numpy as np
 from pandas import DataFrame
 import os, time, glob
 
 
 def maps1(files, selected_risk, selected_season, selected_week):
-    df = pd.read_csv('./data/weeklydata.csv')
+    df = pd.read_csv('C:\zoovision\data\weeklydata.csv')
     fp = files
     rg1 = gpd.read_file(fp)
-    print(df.dtypes)
-    print(selected_season)
-    print(type(selected_week))
+
     # df = df[['SEASON'] == '2015-16']
     df1 = df['SEASON'] == selected_season
     # print(df1)
@@ -27,13 +26,13 @@ def maps1(files, selected_risk, selected_season, selected_week):
     df = df[df1]
 
     df = df[['SEASON', 'STATE_NAME', 'WEEK', 'PERCENT POSITIVE', '%UNWEIGHTED ILI']]
-    print(df)
-    # rg1 = rg1.to_crs(epsg=2163)
+    # print(df)
+    #rg1 = rg1.to_crs(epsg=2163)
     rg1 = rg1.merge(df, on='STATE_NAME')
     # print(rg1)
     # print(rg1.dtypes)
     fig, ax = plt.subplots(1, figsize=(14, 8))
-    title = selected_season + " " + selected_risk + " " + 'week' + " " + str(selected_week)
+    title = selected_season + " " + selected_risk + " " + 'WEEK' + " " + str(selected_week)
     ax.set_title(title, y=1.08, fontsize=20)
     ax.set_axis_off()
     rg1.plot(column=selected_risk, categorical=True, k=10, cmap='OrRd', linewidth=0.3, ax=ax,
@@ -56,20 +55,22 @@ def maps1(files, selected_risk, selected_season, selected_week):
     # Use time of filename in order make a unique filename that the browser has not chached
     plotfile = os.path.join('static', str(time.time()) + '.png')
     plt.savefig(plotfile)
+    #plt.close()
+    plotfile1 = plotfile
     # plt.show()
-    return plotfile
+    return plotfile1
 
 
 def mapper(files):
     fp = files
     rg1 = gpd.read_file(fp)
-    # rg1 = rg1.to_crs(epsg=2163)
+    rg1 = rg1.to_crs(epsg=2163)
     fig, ax = plt.subplots(1, figsize=(15, 10))
-    # selected = "POP10_SQMI"
-    # if selected == "POP10_SQMI":
-    #    hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
-    # else:
-    #    hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
+    selected = "POP10_SQMI"
+    if selected == "POP10_SQMI":
+        hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
+    else:
+        hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
     title = "Select parameters and press query to view surveillance summary"
     ax.set_title(title, y=1.08, fontsize=30)
     ax.set_axis_off()
@@ -104,7 +105,7 @@ def mapper_test(files, db_result, selected_virus, selected_risk, risk_factor):
     # print(rg1)
     # print(tuple(df))
     # print(tuple(rg1))
-    # rg1 = rg1.to_crs(epsg=2163)
+    rg1 = rg1.to_crs(epsg=2163)
     # df.STATE_NAME.astype(str)
     # rg1.STATE_NAME.astype(str)
     # print(df.dtypes)
@@ -129,13 +130,14 @@ def mapper_test(files, db_result, selected_virus, selected_risk, risk_factor):
     # Use time of filename in order make a unique filename that the browser has not chached
     plotfile = os.path.join('static', str(time.time()) + '.png')
     plt.savefig(plotfile)
+    plt.close()
     return plotfile
 
 
 def local_moran(files, weight):
     fp = files
     rg1 = gpd.read_file(fp)
-    # rg1 = rg1.to_crs(epsg=2163)
+    rg1 = rg1.to_crs(epsg=2163)
     # fig, ax = plt.subplots(1, figsize=(12, 12))
     # ax.set_title("Local Indicators of Spatial Association ", y=1.08, fontsize=42)
     # ax.set_axis_off()
@@ -196,6 +198,26 @@ def slider():
     plotfile = os.path.join('static', str(time.time()) + '.png')
     plt.savefig(plotfile)
     plt.show()
+    return plotfile
+
+
+def sum_chart():
+    n = 3
+    H1N1 = (16, 21, 23)
+    H3N2 = (21, 11, 21)
+    x = np.arange(n)
+    width = 0.35
+    fig, ax = plt.subplots(1, figsize=(6, 4))
+    p1 = plt.bar(x, H3N2, width, color='black')
+    p2 = plt.bar(x, H1N1, width, color='firebrick', bottom=H3N2)
+    plt.ylabel('Percent')
+    plt.title('Proportion of Circulating viral sequences by species')
+    plt.xticks(x, ('Human', 'Avian', 'Swine'))
+    plt.yticks(np.arange(0, 60, 5))
+    plt.legend((p2[0], p1[0]), ('H1N1', 'H3N2'))
+    plotfile = os.path.join('static', str(time.time()) + '.png')
+    plt.savefig(plotfile)
+    #plt.close()
     return plotfile
 
 
