@@ -4,7 +4,7 @@
 import logging
 from flask import render_template,  request
 # from flask_bootstrap import Bootstrap
-from flask_nav import Nav
+# from flask_nav import Nav
 # from flask_nav.elements import Navbar, Subgroup, View, Link, Text
 # from flask_googlemaps import GoogleMaps
 # from wtforms import SelectField, SubmitField, Form, TextField, TextAreaField, validators
@@ -18,7 +18,7 @@ from flask import Flask, session
 
 app = Flask(__name__)
 # Bootstrap(app)
-nav = Nav(app)
+# nav = Nav(app)
 
 # nav.register_element('my_navbar', Navbar('thenav', View('Home', 'home')))
 
