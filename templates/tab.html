@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ZooVision</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+ <!--<script src="jquery.min.js"></script>-->
+<!--<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/css/bootstrap-slider.css" rel="stylesheet">
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+		localStorage.setItem('activeTab', $(e.target).attr('href'));
+	});
+	var activeTab = localStorage.getItem('activeTab');
+	if(activeTab){
+		$('#myTab a[href="' + activeTab + '"]').tab('show');
+	}
+});
+</script>
+<!--w3 slider -->
+<style type="text/css">
+	.bs-example{
+		margin: 20px;
+	}
+	.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+
+
+}
+</style>
+
+<!--boostrap slider css  -->
+      <!--  <style type='text/css'>
+
+    	/* Space out content a bit */
+			body {
+			  padding-top: 20px;
+			  padding-bottom: 20px;
+			}
+
+			h1 small {
+				font-size: 51%;
+			}
+
+			table {
+				border-collapse: collapse;
+				width: 100%;
+			}
+
+			th, td {
+				text-align: left;
+				padding: 5px;
+			}
+
+			tr:nth-child(even){background-color: #e5e5e5}
+
+			th {
+				background-color: #00008B;
+				color: white;
+			}
+
+			/* Everything but the jumbotron gets side spacing for mobile first views */
+			.header,
+			.marketing,
+			.footer {
+			  padding-left: 15px;
+			  padding-right: 15px;
+			}
+
+			/* Custom page header */
+			.header {
+			  border-bottom: 1px solid #e5e5e5;
+			}
+			/* Make the masthead heading the same height as the navigation */
+			.header h3 {
+			  margin-top: 0;
+			  margin-bottom: 0;
+			  line-height: 40px;
+			  padding-bottom: 19px;
+			}
+
+			/* Custom page footer */
+			.footer {
+			  padding-top: 19px;
+			  color: #777;
+			  border-top: 1px solid #e5e5e5;
+			}
+
+			/* Customize container */
+			.container {
+				min-width: 640px;
+			}
+			@media (min-width: 768px) {
+			  .container {
+			    max-width: 1000px;
+			  }
+			}
+			.container-narrow > hr {
+			  margin: 30px 0;
+			}
+
+			/* Main marketing message and sign up button */
+			.title {
+			  text-align: center;
+			  border-bottom: 1px solid #e5e5e5;
+			}
+
+			/* Responsive: Portrait tablets and up */
+			@media screen and (min-width: 768px) {
+			  /* Remove the padding we set earlier */
+			  .header,
+			  .footer {
+			    padding-left: 0;
+			    padding-right: 0;
+			  }
+			  /* Space out the masthead */
+			  .header {
+			    margin-bottom: 30px;
+			  }
+			  /* Remove the bottom border on the jumbotron for visual effect */
+			  .title {
+			    border-bottom: 0;
+			  }
+			}
+
+			.well {
+				background-color: #E0E0E0;
+			}
+
+			.slider-example {
+				padding-top: 10px;
+				padding-bottom: 55px;
+				margin: 35px 0;
+			}
+
+			#destroyEx5Slider, #ex6CurrentSliderValLabel, #ex7-enabled {
+				margin-left: 45px;
+			}
+
+			#ex6SliderVal {
+				color: green;
+			}
+
+			#slider12a .slider-track-high, #slider12c .slider-track-high {
+				background: green;
+			}
+
+			#slider12b .slider-track-low, #slider12c .slider-track-low {
+				background: red;
+			}
+
+			#slider12c .slider-selection {
+				background: yellow;
+			}
+
+			#slider22 .slider-selection {
+				background: #2196f3;
+			}
+
+			#slider22 .slider-rangeHighlight {
+				background: #f70616;
+			}
+
+			#slider22 .slider-rangeHighlight.category1 {
+				background: #FF9900;
+			}
+
+			#slider22 .slider-rangeHighlight.category2 {
+				background: #99CC00;
+			}
+
+    </style>
+
+-->
+</head>
+
+<style> <link rel="stylesheet"
+      href="/static/template9.css">
+</style>
+
+<body>
+<div class="w3-container w3-grey">
+  <h2>ZooVision</h2>
+</div>
+<div class="bs-example">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#surveillance">Surveillance</a></li>
+        <li><a data-toggle="tab" href="#analysis">Analysis</a></li>
+        <li><a data-toggle="tab" href="#Survey">Survey</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h3>Zoonotic Disease Surveillance</h3>
+            <div class = "row">
+     <div class="col-sm-3">
+      <p> Surveillance is an important task for monitoring zoonotic disease in human and animal populations</p>
+      <p>Zoovision is a spatial decision support platform that allows health professionals to examine patterns of disease distribution and clustering for a given disease, across three major surveillance initiatives: The department of Public health, department of Agriculture, and the department of Wildlife</p>
+     </div>
+     <div class="col-sm-6">
+       <p><div style="text-align: center;"><iframe width="580" height="335" src="https://www.youtube.com/embed/02cwLdxkwkg" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></p>
+     </div>
+     <div class="col-sm-2">
+        <h2>Instructions</h2>
+        <p>1. To familiarize yourself, please watch the video</p>
+        <p>2. Complete the scenarios by advancing to the surveillance tab</p>
+   </div>
+     </div>
+        </div>
+        <div id="surveillance" class="tab-pane fade">
+            <h3>Summary of surveillance</h3>
+            <div class="row">
+                <div class = "col-sm-2">
+           <p> Select season</p>
+           <form name="Item_1" method='POST' action="/">
+                <select name= "season" >
+                    <option value="{{seasons[0]}}" selected>{{seasons[0]}}</option>
+                  {% for season in seasons[1:] %}
+                    <option value="{{season}}"{% if season == selected_season %} selected{% endif %}>{{season}}</option>
+                    {% endfor %}
+                </select>
+            <p>Select virus</p>
+                <select name= "virus">
+                 <option value="H1N1" selected>H1N1</option>
+
+                  <option value="H3N2">H3N2</option>
+
+                 </select>
+          <p>Select risk factor</p>
+                <select name= "risk_factor" method="POST" action="/surveillance">
+                <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
+                    {% for risk_factor in risk_factors[1:] %}
+                     <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
+                    {% endfor %}
+                </select>
+               <button  name=Query method="POST" action="/" type ="submit">Query</button>
+            </form>
+         </div>
+                <div class = "col-sm-5">
+                  <img src="{{ result }}" width="650">
+                  <p>Week <div id="output"></div> </p>
+                  <form name=slider method="POST" action="/">
+                    <div class="slidecontainer" id="slide_container_f">
+                          <input type="range" min=0 max=52  value = {{selected_week}} class="slider" id="input" name="week" />
+                         <input name=hello type="submit" value="Submit">
+                          <!--<output for="week" oninput="value = 30;"></output>-->
+                         <!--<output  oninput="value = returnValue()"></output>-->
+                        <!--<button onclick = "returnValue()" name=hello >submit</button>-->
+                    </div>
+                  </form>
+
+        <!--<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="1" data-slider-max="52" data-slider-step="1" data-slider-value="40"/>-->
+    <!--<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    -->
+     <script>
+                   var values = [40,41,42,43,44,45,46,47,48,49,50,51,52,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39];
+                   var indexes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52];
+
+                    var input = document.getElementById('input'),
+                        button = document.getElementById('button'),
+                       output = document.getElementById('output');
+                    input.oninput = function(){
+                        output.innerHTML = values[this.value];
+                        document.getElementById("input").value = indexes[this.value]
+
+                    };
+                    input.oninput();
+
+
+        </script>
+                </div>
+                <div class = "col-sm-3">
+
+                <div style="text-align: center;">
+                    <img src="{{ chart }}" width="650">
+          </div>
+        </div>
+             </div>
+        </div>
+        <div id="analysis" class="tab-pane fade">
+            <h3>Cluster analysis and prediction</h3>
+             <div class="row">
+               <div class = "col-sm-2">
+           <p> Select season</p>
+           <form name="Item_1" method='POST' action="/">
+               <select name= "season" >
+                 <option value="2016-17" selected>2016-17</option>
+
+                 <option value="2017-18">2017-18</option>
+
+                 <option value="2018-19">2018-19</option>
+
+                </select>
+            <p>Select virus</p>
+                <select name= "virus">
+                 <option value="H1N1" selected>H1N1</option>
+
+                  <option value="H3N2">H3N2</option>
+
+                 </select>
+          <p>Select risk factor</p>
+              <select name= "risk_factor" method="POST" action="/">
+                <option value="PERCENT POSITIVE" selected>PERCENT POSITIVE</option>
+
+                   <option value="%UNWEIGHTED ILI">%UNWEIGHTED ILI</option>
+
+              </select>
+               <button  name=Query method="POST" action="/" type ="submit">Query</button>
+            </form>
+          <!-- <div ng-app="myApp" ng-controller="myCtrl">
+        <select id= "Season" ng-model="selectedName" ng-options="x for x in names"></select>
+      </div>
+          <p> Select Virus</p>
+      </div>
+      <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope) {
+        $scope.names = ["2016-17", "2017-18", "2018-19"];
+      });
+      </script>
+    -->
+         </div>
+                <div class = "col-sm-5">
+                  <img src="{{ result }}" width="650">
+                 <form name=slider method="POST" action="/">
+                   <div class="slidecontainer" id="slide_container_f">
+                     <p>Week <span id="demo"></span></p>
+                      <input type="range" min=40 max=52 value=40 class="slider"
+                      id="myRange" name="week" oninput="sliderChange(this.value)" />
+                      <output for="week" oninput="value = week.valueAsNumber;"></output>
+                      <input name=hello type="submit" value="Submit">
+                      </div>
+                 </form>
+
+
+    </div>
+                <div class = "col-sm-3">
+                    <img src="{{ chart }}" width="650">
+                </div>
+             </div>
+        </div>
+        <div id="Survey" class="tab-pane fade">
+            <div class="col-sm-5">
+             <h2>User Satisfaction Survey</h2>
+               <h4>Once you have finished completing the scenarios, please follow the link bellow to provide feedback on ZooVision</h4>
+                <button onclick="window.location.href = 'https://sites.google.com/view/user-satisfaction-survey/home';">Click Here</button>
+               <p>Based on: Lewis, J. R. (1995) IBM Computer Usability Satisfaction Questionnaires: Psychometric Evaluation and
+                Instructions for Use. International Journal of Human-Computer Interaction, 7:1, 57-78.</p>
+            </div>
+          </div>
+    </div>
+</body>
+
+  <!--<script>-->
+        <!--var slider = document.getElementById("myRange");-->
+        <!--var output = document.getElementById("demo");-->
+        <!--output.innerHTML = slider.value;-->
+
+        <!--slider.oninput = function() {-->
+        <!--output.innerHTML = this.value;-->
+        <!--}-->
+   <!--</script>-->
+</html>
