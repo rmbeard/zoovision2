@@ -48,7 +48,6 @@ def session_management():
 @app.route("/", methods=['GET', 'POST'])
 def home():
     file = "./data/Export_Output.shp"
-    # set defualt parametersx
     seasons = [ '2016-17', '2017-18', '2018-19']
     viruses = ['H1N1', 'H3N2']
     risk_factors = ['PERCENT POSITIVE', '%UNWEIGHTED ILI']
@@ -56,7 +55,7 @@ def home():
     if request.method == 'GET':
         session['selected_risk'] = "PERCENT POSITIVE"
         session['selected_season'] = '2015-16'
-        session['selected_week'] = 1
+        session['selected_week'] = 0
         selected_risk = session['selected_risk']
         selected_season = session['selected_season']
         selected_week = session['selected_week']
@@ -69,7 +68,11 @@ def home():
             session['selected_season'] = selected_season
             selected_week = session['selected_week']
             print(selected_week)
-            result = maps1(file, selected_risk, selected_season, selected_week)
+            if selected_week < 13:
+                selected_val = selected_week + 40
+            else:
+                selected_val = selected_week - 12
+            result = maps1(file, selected_risk, selected_season, selected_val)
             chart = sum_chart()
             return render_template("tab.html", week=week, min=40, max=52, selected_week=selected_week, seasons=seasons,
                                    selected_risk=selected_risk, selected_season=selected_season,
@@ -81,7 +84,7 @@ def home():
             if selected_week < 13:
                 selected_val = selected_week + 40
             else:
-                selected_val = selected_week -12
+                selected_val = selected_week - 12
             selected_risk = session['selected_risk']
             selected_season = session['selected_season']
             session['selected_week'] = selected_week
@@ -92,8 +95,12 @@ def home():
                                    selected_risk=selected_risk, selected_season=selected_season, viruses=viruses, risk_factors=risk_factors,
                                    result=result, chart=chart)
     # chart = sum_chart(selected_risk, selected_season)
-    result = maps1(file, selected_risk, selected_season, selected_week)
-    #result = "C:\zoovision\static\default.png"
+    if selected_week < 13:
+        selected_val = selected_week + 40
+    else:
+        selected_val = selected_week - 12
+    result = maps1(file, selected_risk, selected_season, selected_val)
+    # result = "C:\zoovision\static\default.png"
     chart = sum_chart()
     return render_template("tab.html", week=week, min=40, max=52, seasons=seasons, selected_week=selected_week,
                            selected_risk=selected_risk, selected_season=selected_season, viruses=viruses,
