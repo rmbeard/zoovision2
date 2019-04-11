@@ -26,8 +26,8 @@ $(document).ready(function(){
 	}
 	.slider {
   -webkit-appearance: none;
-  width: 100%;
-  height: 25px;
+  width: 60%;
+  height: 20px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
@@ -42,16 +42,16 @@ $(document).ready(function(){
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
+  width: 20px;
+  height: 20px;
+  background: #82382d;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
-  width: 25px;
-  height: 25px;
-  background: #4CAF50;
+  width: 20px;
+  height: 20px;
+  background: #82382d;
   cursor: pointer;
 }
 
@@ -282,11 +282,22 @@ $(document).ready(function(){
 
                 <div style="text-align: center;">
                     <img src="{{ chart }}" width="650">
+                <form name=Item2 method="POST" action="/">
+                <p>Select State</p>
+                    <select align ="center" name= "state" method="POST" action="/surveillance">
+                        <option value="{{states[0]}}" selected>{{states[0]}}</option>
+                        {% for state in states[1:] %}
+                        <option value="{{state}}"{% if state == selected_state %} selected{% endif %}>{{state}}</option>
+                        {% endfor %}
+                    </select>
+                    <button  name=state method="POST" action="/" type ="submit">Submit</button>
+                  </form>
+
           </div>
         </div>
              </div>
-             <h6 align = "center"> Source: Centers for Disease Control and Prevention. Fluview.</h6>
-             <h6 align="center">https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html </h6>
+             <h6 align = "center"> Sources: Centers for Disease Control and Prevention. Fluview.</h6>
+             <h6 align="center">United States Department of Agriculture. APHIS.</h6>
         </div>
         <div id="analysis" class="tab-pane fade">
              <h3>Cluster analysis and prediction</h3>
@@ -309,7 +320,6 @@ $(document).ready(function(){
                   <option value="H3N2">H3N2</option>
 
                  </select>
-
                <button  name=Query method="POST" action="/" type ="submit">Query</button>
             </form>
           <!-- <div ng-app="myApp" ng-controller="myCtrl">
@@ -327,20 +337,14 @@ $(document).ready(function(){
          </div>
                 <div class = "col-sm-5">
                   <img src="{{ result }}" width="650">
-<!--                    <p>Week <span id="output1"></span> </p>
-                 <form name=slider method="POST" action="/">
-                   <div class="slidecontainer" id="slide_container_f">
-                         <input type="range" min=0 max=52  value = {{selected_week}} class="slider" id="input" name="week" />
-                         <input name=hello type="submit" value="Submit">
-                      </div>
-                 </form>-->
+
              </div>
                 <div class = "col-sm-3">
-                    <img src="{{ chart }}" width="650">
+
                 </div>
         </div>
              <h6 align = "center"> Source: Centers for Disease Control and Prevention. Fluview.</h6>
-             <h6 align="center">https://gis.cdc.gov/grasp/fluview/fluportaldashboard.html </h6>
+             <h6 align="center">United States Department of Agriculture. APHIS.</h6>
         </div>
         <div id="Survey" class="tab-pane fade">
             <div class="col-sm-5">
