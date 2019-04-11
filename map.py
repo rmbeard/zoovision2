@@ -11,7 +11,7 @@ import os, time, glob
 
 
 def maps1(files, selected_risk, selected_season, selected_week):
-    df = pd.read_csv('./data/weeklydata.csv')
+    df = pd.read_csv('C:\zoovision\data\weeklydata.csv')
     fp = files
     rg1 = gpd.read_file(fp)
 
@@ -27,11 +27,11 @@ def maps1(files, selected_risk, selected_season, selected_week):
 
     df = df[['SEASON', 'STATE_NAME', 'WEEK', 'PERCENT POSITIVE', '%UNWEIGHTED ILI']]
     # print(df)
-    #rg1 = rg1.to_crs(epsg=2163)
+    # rg1 = rg1.to_crs(epsg=2163)
     rg1 = rg1.merge(df, on='STATE_NAME')
     # print(rg1)
     # print(rg1.dtypes)
-    fig, ax = plt.subplots(1, figsize=(14, 8))
+    fig, ax = plt.subplots(1, figsize=(13, 8))
     title = selected_season + " " + selected_risk + " " + 'WEEK' + " " + str(selected_week)
     ax.set_title(title, y=1.08, fontsize=20)
     ax.set_axis_off()
@@ -170,50 +170,19 @@ def local_moran(files, weight):
 fig, ax = plt.subplots(1, figsize=(15, 10))
 
 
-def slider():
-    fp = "C:\zoovision\data\states\states2.shp"
-    rg1 = gpd.read_file(fp)
-    rg1 = rg1.to_crs(epsg=2163)
-    # fig, ax = plt.subplots(1, figsize=(15, 10))
-    hr10 = ps.Quantiles(rg1.POP10_SQMI, k=10)
-    # title = "Select parameters and press query to view surveillance summary"
-    # ax.set_title(title, y=1.08, fontsize=30)
-    ax.set_axis_off()
-    rg1.plot(ax=ax)
-
-    # define demnsions of slider bar
-    axcolor = 'lightgoldenrodyellow'
-    axfreq = plt.axes([0.25, 0.1, 0.65, 0.03], facecolor=axcolor)
-
-    # mapslider= plt.axes
-    samp = Slider(axfreq, 'Week', 1, 40, valinit=1)
-    samp.on_changed(update)
-    if not os.path.isdir('static'):
-        os.mkdir('static')
-    else:
-        # Remove old plot files
-        for filename in glob.glob(os.path.join('static', '*.png')):
-            os.remove(filename)
-    # Use time in filename in order make a unique filename that the browser has not chached
-    plotfile = os.path.join('static', str(time.time()) + '.png')
-    plt.savefig(plotfile)
-    plt.show()
-    return plotfile
-
-
 def sum_chart():
     n = 3
     H1N1 = (16, 21, 23)
     H3N2 = (21, 11, 21)
     x = np.arange(n)
     width = 0.35
-    fig, ax = plt.subplots(1, figsize=(6, 4))
+    fig, ax = plt.subplots(1, figsize=(7, 4))
     p1 = plt.bar(x, H3N2, width, color='black')
     p2 = plt.bar(x, H1N1, width, color='firebrick', bottom=H3N2)
     plt.ylabel('Percent')
-    plt.title('Proportion of Circulating viral sequences by species')
+    plt.title('Proportion of Circulating viral sequences by species', fontsize=10)
     plt.xticks(x, ('Human', 'Avian', 'Swine'))
-    plt.yticks(np.arange(0, 60, 5))
+    plt.yticks(np.arange(0, 60, 10))
     plt.legend((p2[0], p1[0]), ('H1N1', 'H3N2'))
     plotfile = os.path.join('static', str(time.time()) + '.png')
     plt.savefig(plotfile)
