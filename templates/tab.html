@@ -238,23 +238,16 @@ $(document).ready(function(){
         <div id="surveillance" class="tab-pane fade">
             <h3>Summary of surveillance</h3>
             <div class="row">
-                <div class = "col-sm-2">
-           <p> Select season</p>
-           <form name="Item_1" method='POST' action="/">
+            <div class = "col-sm-2">
+            <p> Select season</p>
+            <form name="Item_1" method='POST' action="/">
                 <select name= "season" >
                     <option value="{{seasons[0]}}" selected>{{seasons[0]}}</option>
-                  {% for season in seasons[1:] %}
-                    <option value="{{season}}"{% if season == selected_season %} selected{% endif %}>{{season}}</option>
-                    {% endfor %}
+                     {% for season in seasons[1:] %}
+                     <option value="{{season}}"{% if season == selected_season %} selected{% endif %}>{{season}}</option>
+                     {% endfor %}
                 </select>
-            <p>Select virus</p>
-                <select name= "virus">
-                 <option value="H1N1" selected>H1N1</option>
-
-                  <option value="H3N2">H3N2</option>
-
-                 </select>
-          <p>Select risk factor</p>
+                <p>Select risk factor</p>
                 <select name= "risk_factor" method="POST" action="/surveillance">
                 <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
                     {% for risk_factor in risk_factors[1:] %}
@@ -263,7 +256,7 @@ $(document).ready(function(){
                 </select>
                <button  name=Query method="POST" action="/" type ="submit">Query</button>
             </form>
-         </div>
+           </div>
                 <div class = "col-sm-5">
                   <img src="{{ result }}" width="650">
                   <p>Week <span id="output"></span> </p>
@@ -303,25 +296,34 @@ $(document).ready(function(){
              <h3>Cluster analysis and prediction</h3>
              <div class="row">
                 <div class = "col-sm-2">
-             <p> Select species</p>
-             <form name="Item_1" method='POST' action="/">
-               <select name= "season" >
-                 <option value="2016-17" selected>2016-17</option>
-
-                 <option value="2017-18">2017-18</option>
-
-                 <option value="2018-19">2018-19</option>
-
+             <p> Select risk factor</p>
+              <form name="Item_1" method='POST' action="/">
+                <select name= "risk_factor" method="POST" action="/surveillance">
+                <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
+                    {% for risk_factor in risk_factors[1:] %}
+                     <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
+                    {% endfor %}
                 </select>
-            <p>Select cluster weighting </p>
-                <select name= "virus">
-                 <option value="H1N1" selected>H1N1</option>
-
-                  <option value="H3N2">H3N2</option>
-
-                 </select>
-               <button  name=Query method="POST" action="/" type ="submit">Query</button>
-            </form>
+                <p>Select weighting</p>
+                  <select name= "weight">
+                  <option value="{{weights[0]}}" selected>{{weights[0]}}</option>
+                    {% for weight in weights[1:] %}
+                     <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{weight}}</option>
+                    {% endfor %}
+                  </select>
+                     <button name="case" method="POST" action="/prediction_analysis" type ="submit">Analyze</button>
+                </form>
+                 <h2>Prediction analysis</h2>
+                 <form name="Item_2" method='POST' action="/">
+                <p>Select Prediction</p>
+                  <select name= "weight">
+                  <option value="{{weights[0]}}" selected>{{weights[0]}}</option>
+                    {% for weight in weights[1:] %}
+                     <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{virus}}</option>
+                    {% endfor %}
+                  </select>
+                     <button  method="POST" action="/" type ="submit">Analyze</button>
+                </form>
           <!-- <div ng-app="myApp" ng-controller="myCtrl">
         <select id= "Season" ng-model="selectedName" ng-options="x for x in names"></select>
       </div>
@@ -336,7 +338,7 @@ $(document).ready(function(){
     -->
          </div>
                 <div class = "col-sm-5">
-                  <img src="{{ result }}" width="650">
+                  <img src="{{ result_cluster }}" width="650">
 
              </div>
                 <div class = "col-sm-3">
