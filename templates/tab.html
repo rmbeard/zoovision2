@@ -57,149 +57,6 @@ $(document).ready(function(){
 
 </style>
 
-<!--boostrap slider css  -->
-      <!--  <style type='text/css'>
-
-    	/* Space out content a bit */
-			body {
-			  padding-top: 20px;
-			  padding-bottom: 20px;
-			}
-
-			h1 small {
-				font-size: 51%;
-			}
-
-			table {
-				border-collapse: collapse;
-				width: 100%;
-			}
-
-			th, td {
-				text-align: left;
-				padding: 5px;
-			}
-
-			tr:nth-child(even){background-color: #e5e5e5}
-
-			th {
-				background-color: #00008B;
-				color: white;
-			}
-
-			/* Everything but the jumbotron gets side spacing for mobile first views */
-			.header,
-			.marketing,
-			.footer {
-			  padding-left: 15px;
-			  padding-right: 15px;
-			}
-
-			/* Custom page header */
-			.header {
-			  border-bottom: 1px solid #e5e5e5;
-			}
-			/* Make the masthead heading the same height as the navigation */
-			.header h3 {
-			  margin-top: 0;
-			  margin-bottom: 0;
-			  line-height: 40px;
-			  padding-bottom: 19px;
-			}
-
-			/* Custom page footer */
-			.footer {
-			  padding-top: 19px;
-			  color: #777;
-			  border-top: 1px solid #e5e5e5;
-			}
-
-			/* Customize container */
-			.container {
-				min-width: 640px;
-			}
-			@media (min-width: 768px) {
-			  .container {
-			    max-width: 1000px;
-			  }
-			}
-			.container-narrow > hr {
-			  margin: 30px 0;
-			}
-
-			/* Main marketing message and sign up button */
-			.title {
-			  text-align: center;
-			  border-bottom: 1px solid #e5e5e5;
-			}
-
-			/* Responsive: Portrait tablets and up */
-			@media screen and (min-width: 768px) {
-			  /* Remove the padding we set earlier */
-			  .header,
-			  .footer {
-			    padding-left: 0;
-			    padding-right: 0;
-			  }
-			  /* Space out the masthead */
-			  .header {
-			    margin-bottom: 30px;
-			  }
-			  /* Remove the bottom border on the jumbotron for visual effect */
-			  .title {
-			    border-bottom: 0;
-			  }
-			}
-
-			.well {
-				background-color: #E0E0E0;
-			}
-
-			.slider-example {
-				padding-top: 10px;
-				padding-bottom: 55px;
-				margin: 35px 0;
-			}
-
-			#destroyEx5Slider, #ex6CurrentSliderValLabel, #ex7-enabled {
-				margin-left: 45px;
-			}
-
-			#ex6SliderVal {
-				color: green;
-			}
-
-			#slider12a .slider-track-high, #slider12c .slider-track-high {
-				background: green;
-			}
-
-			#slider12b .slider-track-low, #slider12c .slider-track-low {
-				background: red;
-			}
-
-			#slider12c .slider-selection {
-				background: yellow;
-			}
-
-			#slider22 .slider-selection {
-				background: #2196f3;
-			}
-
-			#slider22 .slider-rangeHighlight {
-				background: #f70616;
-			}
-
-			#slider22 .slider-rangeHighlight.category1 {
-				background: #FF9900;
-			}
-
-			#slider22 .slider-rangeHighlight.category2 {
-				background: #99CC00;
-			}
-
-    </style>
-
--->
 </head>
 
 <style> <link rel="stylesheet"
@@ -222,15 +79,15 @@ $(document).ready(function(){
             <h3>Zoonotic Disease Surveillance</h3>
             <div class = "row">
      <div class="col-sm-3">
-      <p> Surveillance is an important task for monitoring zoonotic disease in human and animal populations</p>
-      <p>Zoovision is a spatial decision support platform that allows health professionals to examine patterns of disease distribution and clustering for a given disease, across three major surveillance initiatives: The department of Public health, department of Agriculture, and the department of Wildlife</p>
+      <p align="justify"> Surveillance is an important task for monitoring zoonotic disease in human and animal populations</p>
+      <p align="justify">Zoovision is a spatial decision support platform that allows health professionals to examine patterns of disease distribution and clustering for a given disease, across three major surveillance initiatives: The department of Public health, department of Agriculture, and the department of Wildlife</p>
      </div>
-     <div class="col-sm-6">
+      <div class="col-sm-6">
        <p><div style="text-align: center;"><iframe width="580" height="335" src="https://www.youtube.com/embed/02cwLdxkwkg" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></p>
      </div>
      <div class="col-sm-2">
-        <h2>Instructions</h2>
-        <p>1. To familiarize yourself, please watch the video</p>
+        <h3>Instructions</h3>
+        <p>1. To familiarize yourself, please watch the video at the following link</p>
         <p>2. Complete the scenarios by advancing to the surveillance tab</p>
    </div>
      </div>
@@ -248,13 +105,20 @@ $(document).ready(function(){
                      {% endfor %}
                 </select>
                 <p>Select risk factor</p>
-                <select name= "risk_factor" method="POST" action="/surveillance">
+                <select name= "risk_factor" >
                 <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
                     {% for risk_factor in risk_factors[1:] %}
                      <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
                     {% endfor %}
                 </select>
-               <button  name=Query method="POST" action="/" type ="submit">Query</button>
+                <p>Select flu strain</p>
+                <select name= "strain" >
+                <option value="{{strains[0]}}" selected>{{strains[0]}}</option>
+                    {% for strain in strains[1:] %}
+                     <option value="{{strain}}"{% if strain == selected_strain %} selected{% endif %}>{{strain}}</option>
+                    {% endfor %}
+                </select>
+               <button  name=Query type ="submit">Query</button>
             </form>
            </div>
                 <div class = "col-sm-5">
@@ -263,31 +127,26 @@ $(document).ready(function(){
                   <form name=slider method="POST" action="/">
                     <div class="slidecontainer" id="slide_container_f">
                          <input type="range" min=0 max=52  value = {{selected_week}} class="slider" id="input" name="week" />
-                         <input name=hello type="submit" value="Submit">
+                         <input name=week type="submit" value="Select week">
                     </div>
                   </form>
-           <!--<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js"></script>
-    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    -->
                 </div>
                 <div class = "col-sm-3">
-
                 <div style="text-align: center;">
                     <img src="{{ chart }}" width="650">
                 <form name=Item2 method="POST" action="/">
                 <p>Select State</p>
-                    <select align ="center" name= "state" method="POST" action="/surveillance">
+                    <select name= "state" >
                         <option value="{{states[0]}}" selected>{{states[0]}}</option>
                         {% for state in states[1:] %}
                         <option value="{{state}}"{% if state == selected_state %} selected{% endif %}>{{state}}</option>
                         {% endfor %}
                     </select>
-                    <button  name=state method="POST" action="/" type ="submit">Submit</button>
+                    <button  name=state type ="submit">Select state</button>
                   </form>
 
-          </div>
-        </div>
+                 </div>
+               </div>
              </div>
              <h6 align = "center"> Sources: Centers for Disease Control and Prevention. Fluview.</h6>
              <h6 align="center">United States Department of Agriculture. APHIS.</h6>
@@ -298,7 +157,7 @@ $(document).ready(function(){
                 <div class = "col-sm-2">
              <p> Select risk factor</p>
               <form name="Item_1" method='POST' action="/">
-                <select name= "risk_factor" method="POST" action="/surveillance">
+                <select name= "risk_factor">
                 <option value="{{risk_factors[0]}}" selected>{{risk_factors[0]}}</option>
                     {% for risk_factor in risk_factors[1:] %}
                      <option value="{{risk_factor}}"{% if risk_factor == selected_risk %} selected{% endif %}>{{risk_factor}}</option>
@@ -311,7 +170,7 @@ $(document).ready(function(){
                      <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{weight}}</option>
                     {% endfor %}
                   </select>
-                     <button name="case" method="POST" action="/prediction_analysis" type ="submit">Analyze</button>
+                     <button name="case" type ="submit">Analyze</button>
                 </form>
                  <h2>Prediction analysis</h2>
                  <form name="Item_2" method='POST' action="/">
@@ -322,20 +181,9 @@ $(document).ready(function(){
                      <option value="{{weight}}"{% if weight == selected_weight %} selected{% endif %}>{{virus}}</option>
                     {% endfor %}
                   </select>
-                     <button  method="POST" action="/" type ="submit">Analyze</button>
+                     <button type ="submit">Analyze</button>
                 </form>
-          <!-- <div ng-app="myApp" ng-controller="myCtrl">
-        <select id= "Season" ng-model="selectedName" ng-options="x for x in names"></select>
-      </div>
-          <p> Select Virus</p>
-      </div>
-      <script>
-        var app = angular.module('myApp', []);
-        app.controller('myCtrl', function($scope) {
-        $scope.names = ["2016-17", "2017-18", "2018-19"];
-      });
-      </script>
-    -->
+
          </div>
                 <div class = "col-sm-5">
                   <img src="{{ result_cluster }}" width="650">
