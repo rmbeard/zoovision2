@@ -10,7 +10,8 @@ import os, time, glob
 
 # method to display a map for a specific year, week, and strain
 def maps1(shapefile, selected_risk, selected_strain, selected_season, selected_week):
-    df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    # df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    df = pd.read_csv('./data/weeklydata1_test1.csv')
     rg1 = gpd.read_file(shapefile)
     target = df['ILI POSITIVE']
     minima = min(target)
@@ -66,7 +67,8 @@ def maps1(shapefile, selected_risk, selected_strain, selected_season, selected_w
 
 
 def maps2(shapefile, selected_strain, selected_risk, selected_season, selected_week):
-    df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    # df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    df = pd.read_csv('./data/weeklydata1_test1.csv')
     rg1 = gpd.read_file(shapefile)
     df1 = df['SEASON'] == selected_season
     df = df[df1]
@@ -105,7 +107,8 @@ def maps2(shapefile, selected_strain, selected_risk, selected_season, selected_w
 
 
 def precalc_moran(shapefile, selected_season, selected_val, selected_weight):
-    df = pd.read_csv('C:\zoovision\data\cluster_results.csv')
+    #df = pd.read_csv('C:\zoovision\data\cluster_results.csv')
+    df = pd.read_csv('./data/cluster_results.csv')
     # df = pd.read_csv('C:\zoovision\data\cluster_results_seg2.csv')
     # df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
     # read in shapefile
@@ -152,7 +155,8 @@ def precalc_moran(shapefile, selected_season, selected_val, selected_weight):
 
 # method to display seasonal ili  rate for individual states
 def sum_chart1(selected_week, selected_season, selected_state):
-    df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    # df = pd.read_csv('C:\zoovision\data\weeklydata1_test1.csv')
+    df = pd.read_csv('./data/weeklydata1_test1.csv')
     df.set_index(df['WEEKEND'], inplace=True)
     df['WEEKEND'] = pd.to_datetime(df['WEEKEND'], format='%m/%d/%Y')
     df = df[["WEEKEND", '%UNWEIGHTED ILI', "STATE_NAME", "SEASON", "WEEK"]]
