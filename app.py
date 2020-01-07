@@ -33,8 +33,8 @@ def session_management():
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    # file = "./data/Export_Output.shp"
-    shapefile = "C:\zoovision\data\Export_Output.shp"
+    shapefile = "./data/Export_Output.shp"
+    #shapefile = "C:\zoovision\data\Export_Output.shp"
     # set default parameters
     seasons = ['2015-16', '2016-17', '2017-18', '2018-19']
     states = ['Alabama', 'Arizona', 'Arkansas','California', 'Colorado', 'Connecticut', 'Delaware', 'District of Columbia', 'Florida', 'Georgia', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'MaryLand', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',  'West Virginia', 'Wisconsin', 'Wyoming']
