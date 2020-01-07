@@ -1,10 +1,8 @@
-# Created by Rachel Beard: last updated 10/30/19
+# Created by Rachel Beard: last updated 1/11/19
 # Purpose: This is the entry point for a flask application that serves to
 # Zoovision, a spatial decision support web application
 from flask import render_template,  request
-# from wtforms import SelectField, SubmitField, Form, TextField, TextAreaField, validators
-# from flask_wtf import FlaskForm
-from map import maps1, maps2, sum_chart1, local_moran_test, precalc_moran
+from map import maps1, maps2, sum_chart1, precalc_moran
 # from flask_sqlalchemy import SQLAlchemy
 # from sqlalchemy import create_engine
 # from sqlalchemy.orm import scoped_session, sessionmaker
